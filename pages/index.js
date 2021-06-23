@@ -6,11 +6,15 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export default function Home() {
+  const sendCloud = new SendCloud({
+    api_key: process.env.SENDCLOUD_API_KEY,
+    api_secret: process.env.SENDCLOUD_API_SECRET,
+  });
+
   useEffect(async () => {
     try {
-      const result = await axios.get(
-        "https://panel.sendcloud.sc/api/v2/parcels"
-      );
+      const result = await sendCloud.parcels.getParcels();
+      console.log(result);
     } catch (err) {
       console.log(err);
     }
