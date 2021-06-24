@@ -2,10 +2,12 @@ import Image from "next/image";
 import SendCloud from "@aquilacms/sendcloud";
 import { useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 //index
 
 export default function HomePage({ products }) {
+  const router = useRouter();
   return (
     <div>
       {products.map((product) => (
@@ -14,7 +16,7 @@ export default function HomePage({ products }) {
           <button
             className="snipcart-add-item"
             data-item-id={product.id}
-            data-item-url="https://the-big-store.vercel.app/"
+            data-item-url={router.asPath}
             data-item-name={product.title}
             data-item-price={product.price}
           >
