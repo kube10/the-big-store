@@ -20,8 +20,6 @@ export default async (req, res) => {
 
     const data = sc.json();
 
-    console.log(sc);
-
     res.status(200).json(data);
   } catch (e) {
     res.status(500).send(e.message);
