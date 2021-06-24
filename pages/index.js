@@ -12,6 +12,7 @@ export default function HomePage({ products }) {
           <button
             className="snipcart-add-item"
             data-item-id={product.id}
+            data-item-url="/"
             data-item-name={product.title}
             data-item-price={product.price}
           >
@@ -24,9 +25,18 @@ export default function HomePage({ products }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.STRAPI_API_URL}/products`);
-  const data = await res.json();
-  return {
-    props: { products: data },
-  };
+  try {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/products`);
+    const data = await res.json();
+    return {
+      props: { products: data },
+    };
+  } catch (err) {
+    console.log(err.message);
+    return {
+      props: {
+        products: [],
+      },
+    };
+  }
 }
