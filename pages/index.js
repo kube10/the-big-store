@@ -12,7 +12,11 @@ export default function HomePage({ products }) {
           <button
             className="snipcart-add-item"
             data-item-id={product.id}
-            data-item-url="/"
+            data-item-url={
+              process.env.NODE_ENV === "development"
+                ? "http://localhost:3000/"
+                : "https://the-big-store.vercel.app/"
+            }
             data-item-name={product.title}
             data-item-price={product.price}
           >
