@@ -23,7 +23,7 @@ export default function HomePage({ products }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(`${process.env.STRAPI_API_URL}/products`);
   const data = await res.json();
   return {
