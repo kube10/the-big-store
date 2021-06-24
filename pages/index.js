@@ -33,6 +33,9 @@ export async function getServerSideProps() {
   try {
     const res = await fetch(`${process.env.STRAPI_API_URL}/products`);
     const data = await res.json();
+    const apiRes = await fetch(`http://localhost:3000/api/parcels`);
+    const apiData = await apiRes.json();
+    console.log(apiData);
     return {
       props: { products: data },
     };
