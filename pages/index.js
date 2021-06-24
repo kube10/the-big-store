@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 
 export default function HomePage({ products }) {
   const router = useRouter();
+  console.log(router.asPath);
   return (
     <div>
       {products.map((product) => (
@@ -16,7 +17,7 @@ export default function HomePage({ products }) {
           <button
             className="snipcart-add-item"
             data-item-id={product.id}
-            data-item-url={router.asPath}
+            data-item-url="https://the-big-store.vercel.app/"
             data-item-name={product.title}
             data-item-price={product.price}
           >
