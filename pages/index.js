@@ -3,6 +3,8 @@ import SendCloud from "@aquilacms/sendcloud";
 import { useEffect } from "react";
 import axios from "axios";
 
+//index
+
 export default function HomePage({ products }) {
   return (
     <div>
