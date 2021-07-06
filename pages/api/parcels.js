@@ -23,8 +23,11 @@ export default async function handler(req, res) {
   } else if (req.method === "POST") {
     try {
       console.log(req.body);
-      const houseNumber = req.body.shippingAddress1.split(/(\d+)/g);
-      const streetName = req.body.shippingAddress1.replace(houseNumber[1], "");
+      const houseNumber = req.body.shippingAddressAddress1.split(/(\d+)/g);
+      const streetName = req.body.shippingAddressAddress1.replace(
+        houseNumber[1],
+        ""
+      );
       const body = {
         parcel: {
           name: `${req.body.shippingAddressFirstName} ${req.body.shippingAddressLastName}`,
