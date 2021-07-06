@@ -21,6 +21,7 @@ export default async function handler(req, res) {
       res.status(500).send({ msg: err.message });
     }
   } else if (req.method === "POST") {
+    console.log(req.body);
     const body = {
       parcel: {
         name: "Victor Cauwe",
