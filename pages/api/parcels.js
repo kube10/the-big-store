@@ -22,14 +22,16 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "POST") {
     console.log(req.body);
+    const houseNumber = req.body.shippingAddress1.split(/(\d+)/g);
+    const streetName = req.body.shippingAddress1.replace(houseNumber[1], "");
     const body = {
       parcel: {
-        name: "Victor Cauwe",
-        address: "Troyentenhoflaan",
-        house_number: "87",
-        city: "Antwerp",
-        postal_code: "2600",
-        country: "BE",
+        name: `${req.body.shippingAddressFirstName} ${req.body.shippingAddressLastName}`,
+        address: streetName,
+        house_number: houseNumber,
+        city: req.body.shippingAddressCity,
+        postal_code: req.body.shippingPostalCode,
+        country: req.body.shippingAddressCountry,
       },
     };
 
