@@ -21,21 +21,21 @@ export default async function handler(req, res) {
       res.status(500).send({ msg: err.message });
     }
   } else if (req.method === "POST") {
-    console.log(req.body);
-    const houseNumber = req.body.shippingAddress1.split(/(\d+)/g);
-    const streetName = req.body.shippingAddress1.replace(houseNumber[1], "");
-    const body = {
-      parcel: {
-        name: `${req.body.shippingAddressFirstName} ${req.body.shippingAddressLastName}`,
-        address: streetName,
-        house_number: houseNumber,
-        city: req.body.shippingAddressCity,
-        postal_code: req.body.shippingPostalCode,
-        country: req.body.shippingAddressCountry,
-      },
-    };
-
     try {
+      console.log(req.body);
+      const houseNumber = req.body.shippingAddress1.split(/(\d+)/g);
+      const streetName = req.body.shippingAddress1.replace(houseNumber[1], "");
+      const body = {
+        parcel: {
+          name: `${req.body.shippingAddressFirstName} ${req.body.shippingAddressLastName}`,
+          address: streetName,
+          house_number: houseNumber,
+          city: req.body.shippingAddressCity,
+          postal_code: req.body.shippingPostalCode,
+          country: req.body.shippingAddressCountry,
+        },
+      };
+
       const sc = await fetch("https://panel.sendcloud.sc/api/v2/parcels", {
         method: "POST",
         headers: {
@@ -50,6 +50,7 @@ export default async function handler(req, res) {
 
       res.status(200).send(data);
     } catch (err) {
+      console.log(err);
       res.status(500).send(err);
     }
   } else {
