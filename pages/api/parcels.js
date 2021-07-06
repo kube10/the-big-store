@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "POST") {
     try {
-      console.log(req.body);
+      console.log(req);
       const houseNumber = req.body.shippingAddressAddress1.split(/(\d+)/g);
       const streetName = req.body.shippingAddressAddress1.replace(
         houseNumber[1],
